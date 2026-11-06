@@ -37,8 +37,13 @@ Environment variables (both optional):
 - The two links use independent unguessable tokens, so holding the board link never reveals the spymaster key. Bookmark the share hub — it's the only page that shows both links, and it doubles as your "Play again" button.
 - **Multiple games at once:** every Create Game mints a fresh, isolated game with its own links. Different groups never see or affect each other.
 - **Turns:** each turn belongs to one team with a single timer. **Next Turn** flips to the other team and resets the clock. The color-coded banner (on both views) shows whose turn it is.
-- **Timer:** Start / Pause / Reset live on the board (TV) page. All views poll once a second, so timers and reveals stay in sync across devices.
-- **Shots (optional drinking mechanic):** the 🥃 buttons (on both the board and spymaster views) add a minute to the timer and tally a shot — one for the spymaster, one for the guessers. House rule shown in the UI: a guessers' shot earns the team one extra guess.
+- **Timer:** Start / Pause / Reset and Next Turn are on both the board (TV) page and the spymaster page. All views poll once a second, so timers and reveals stay in sync across devices.
+- **Drinking rules:** shown on the home page and the board.
+  - **Spymaster shot:** the 🥃 Spymaster button adds a minute to the timer; the spymaster drinks.
+  - **Guessers' shot:** the 🥃 Guessers button adds a minute and one extra guess; two guessers each take a shot. Can be taken any time during the turn.
+  - **Wrong guess:** whoever tapped it drinks — neutral = 2 sips, other team's word = 5 sips, assassin = finish your drink. A popup on every screen announces it.
+  - **Losing team:** everyone on it takes a shot (shown in the end-of-game banner).
+- **Undo a guess:** on the spymaster page, tap a dimmed (already guessed) tile to undo it, e.g. after a misclick. Only the spymaster link can undo.
 - **Winning / game over:** when a team's tiles are all revealed, the banner announces the win; revealing the assassin ends the game with a game-over banner. (This is display only — start a new round with "Play again".)
 - **Play again:** the share hub's "Play again" button deals a new board (fresh words + colors, cleared reveals/timer/shots) while keeping the same links, so the group doesn't need to re-share.
 

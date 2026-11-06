@@ -104,6 +104,25 @@ code {
 
 .setup-form button { margin-top: 12px; }
 
+.how-to { margin-top: 20px; }
+.how-to h2 { margin-bottom: 12px; }
+.how-to ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px; }
+.how-to li { font-size: 14px; line-height: 1.5; color: var(--muted); }
+.how-to li strong { color: var(--text); }
+.how-to em { font-style: normal; color: var(--accent); }
+.how-to .assassin-word { color: var(--text); font-weight: 600; text-decoration: underline; text-decoration-color: var(--team-a); }
+.how-to-note {
+  margin: 16px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.how-to-note strong { color: var(--text); }
+.how-to-note p { margin: 0 0 8px; }
+.how-to-note ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+
 /* --- Board / spymaster views --- */
 
 .board-wrap { max-width: 1000px; }
@@ -159,13 +178,19 @@ code {
 .tile.spy.team-a { background: rgba(214, 84, 63, 0.28); border-color: var(--team-a); }
 .tile.spy.team-b { background: rgba(47, 125, 224, 0.28); border-color: var(--team-b); }
 .tile.spy.team-neutral { background: rgba(92, 103, 116, 0.28); border-color: var(--neutral); }
-.tile.spy.team-assassin { background: var(--assassin); border-color: var(--team-a); color: var(--team-a); }
+.tile.spy.team-assassin { background: var(--assassin); border-color: #000; color: #fff; }
 .tile.spy.revealed { opacity: 0.35; }
+.tile.spy.revealed:hover { opacity: 0.6; text-decoration: line-through; }
 
 .tile.revealed.team-a { background: var(--team-a); border-color: var(--team-a); color: #fff; }
 .tile.revealed.team-b { background: var(--team-b); border-color: var(--team-b); color: #fff; }
 .tile.revealed.team-neutral { background: var(--neutral); border-color: var(--neutral); color: #fff; }
-.tile.revealed.team-assassin { background: var(--team-a); border-color: var(--team-a); color: #fff; }
+.tile.revealed.team-assassin { background: #000; border-color: #fff; color: #fff; }
+
+/* Skull on the assassin: on the board once revealed, always on the spymaster key.
+   Added via CSS so the tile's text (used in confirm/alert messages) stays just the word. */
+.tile.revealed.team-assassin::before,
+.tile.spy.team-assassin::before { content: '💀 '; }
 
 .controls { display: flex; gap: 10px; flex-wrap: wrap; }
 
@@ -183,7 +208,7 @@ code {
 .swatch.team-a { background: var(--team-a); }
 .swatch.team-b { background: var(--team-b); }
 .swatch.team-neutral { background: var(--neutral); }
-.swatch.team-assassin { background: var(--assassin); border: 1px solid var(--team-a); }
+.swatch.team-assassin { background: var(--assassin); border: 1px solid #000; }
 
 /* --- Phase banner --- */
 
@@ -239,10 +264,49 @@ code {
 }
 
 .rule-note {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
   color: var(--accent);
   font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
+
+/* Losing-team drink line under the end-of-game banner. */
+.banner-drink {
+  display: block;
+  margin-top: 8px;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-weight: 600;
+}
+
+/* Wrong-guess popup, shown on every open view. Tap to dismiss. */
+.drink-alert {
+  position: fixed;
+  left: 50%;
+  top: 24px;
+  transform: translate(-50%, -150%);
+  z-index: 50;
+  width: min(92vw, 460px);
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: #6b3f14;
+  border: 2px solid var(--accent);
+  color: var(--text);
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.drink-alert.show { transform: translate(-50%, 0); }
+.drink-alert.assassin { background: #000; border-color: #fff; }
+.drink-alert.assassin .drink-alert-big { color: #fff; }
+.drink-alert-big { font-size: 24px; font-weight: 800; color: var(--accent); }
+.drink-alert-small { margin-top: 6px; font-size: 15px; }
 
 /* --- Setup: QR block + timer fields --- */
 
